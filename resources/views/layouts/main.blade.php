@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        MENU test
+        MENU test DATABASE
     </div>
     <div>
         @yield('content')
