@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablesTable extends Migration
+class CreateTablenumbersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('tablenumbers', function (Blueprint $table) {
             $table->id();
-            $table->enum('table_status',['full','occupied','avaliable']);
-            $table->enum('checkbill_status',['calling','not calling']);
+            $table->enum('tablenum_status',array('full','occupied','avaliable'));
+            $table->enum('checkbill_status',array('calling','not calling'));
+            $table->string('tablenumber');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +30,6 @@ class CreateTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('tablenumbers');
     }
 }
