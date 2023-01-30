@@ -27,7 +27,7 @@ class CreateMenusTable extends Migration
             $table->string('size');
             $table->longText('comment');
 
-            // $table->foreignIdFor(\App\Models\Recipes::class);
+            $table->foreignIdFor(\App\Models\Recipe::class);
             // $table->foreignIdFor(\App\Models\Promotion::class);
         });
     }
