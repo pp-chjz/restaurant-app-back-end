@@ -20,6 +20,7 @@ class MenuFactory extends Factory
             'name_TH' => $this->faker->lastName(),
             'comment' => $this->faker->address(),
             'recipe_id' => $this->faker->numerify("####"),
+            'promotion_id' => $this->faker->numerify("####"),
         ];
     }
 }
