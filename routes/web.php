@@ -41,3 +41,5 @@ Route::get('/about', function () {
         ]
     ]);
 });
+
+Route::resource('menu',\App\Http\Controllers\MenuController::class);
