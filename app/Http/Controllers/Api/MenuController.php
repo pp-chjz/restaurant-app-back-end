@@ -97,6 +97,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+
+        return response()->json(['message' => 'Menu Successfully deleted']);
     }
 }

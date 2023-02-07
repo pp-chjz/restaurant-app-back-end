@@ -83,6 +83,8 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        //
+        $ingredient->delete();
+
+        return response()->json(['message' => 'Ingredient Successfully deleted']);
     }
 }
