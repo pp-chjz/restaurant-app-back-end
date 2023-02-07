@@ -74,7 +74,7 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+        return new \App\Http\Resources\MenuResource($menu);
     }
 
     /**
