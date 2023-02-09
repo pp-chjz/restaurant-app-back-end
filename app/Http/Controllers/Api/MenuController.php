@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Log;
 
 class MenuController extends Controller
 {
@@ -63,7 +64,41 @@ class MenuController extends Controller
         $menu->promotion_id = 0;
         $menu->save();
 
+        $ingredients = $request->input('ingredients');
+        $this->updateIngredient($menu, $ingredients);
+
         return $menu;
+    }
+
+
+    private function updateIngredient(Menu $menu, $ingredients)
+    {
+        $ingredient_array = [];
+        foreach ($ingredients as $ingredient_id)
+        {
+            array_push($ingredient_array, $ingredient_id);
+        }
+
+        $menu->ingredients()->sync($ingredient_array);
+
+        // foreach ($ingredients as $ingredient_name)
+        // {
+        //     $menutest = new Menu();
+        //     $menutest->menu_id = $menu->name_TH;
+        //     $menutest->catagories = 1;
+        //     $menutest->sort_menu = 1;
+        //     $menutest->name_ENG = $ingredient_name;
+        //     $menutest->name_TH = "test";
+        //     $menutest->menu_status = 1;
+        //     $menutest->price = 150;
+        //     $menutest->QTY = 1;
+        //     $menutest->size = "l";
+        //     $menutest->comment = "test";
+        //     $menutest->recipe_id = 0;
+        //     $menutest->promotion_id = 0;
+        //     $menutest->save();
+        // }
+        
     }
 
     /**
