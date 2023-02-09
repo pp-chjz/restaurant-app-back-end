@@ -22,8 +22,8 @@ class MenuController extends Controller
     {
         // $user = JWTAuth::user();
         // $m = $user->tasks()->paginate(5);
-        $menus = \App\Models\Menu::get();
-        return $menus;
+        $menus = \App\Models\Menu::with('ingredients')->get();
+        return new \App\Http\Resources\Menu($menus);
     }
 
     /**

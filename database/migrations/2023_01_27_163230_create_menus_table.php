@@ -29,6 +29,7 @@ class CreateMenusTable extends Migration
 
             $table->foreignIdFor(\App\Models\Recipe::class);
             $table->foreignIdFor(\App\Models\Promotion::class);
+            $table->foreignIdFor(\App\Models\Ingredient::class);
         });
     }
 

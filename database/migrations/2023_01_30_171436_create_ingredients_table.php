@@ -23,6 +23,7 @@ class CreateIngredientsTable extends Migration
             $table->enum('ingredient_status',array('in stock','out of stock'));
 
             $table->foreignIdFor(\App\Models\Recipe::class);
+            $table->foreignIdFor(\App\Models\Menu::class);
 
         });
     }

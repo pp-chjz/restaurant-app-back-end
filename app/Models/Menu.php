@@ -16,6 +16,7 @@ class Menu extends Model
         'QTY' => 1,
         'sort_menu' => 1,
         'size' => 'l',
+        'ingredient_id' => 0,
     ];
 
     // public function recipes()
@@ -25,5 +26,9 @@ class Menu extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class);
     }
 }
