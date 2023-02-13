@@ -16,7 +16,7 @@ class MenuSeeder extends Seeder
     {
         $menu = new Menu();
         $menu->price = 150.00;
-        $menu->menu_id = "menu_id";
+        $menu->menu_id = "false";
         $menu->name_ENG = "tomyum shrimp";
         $menu->name_TH = "ต้มยำกุ้ง";
         $menu->comment = "ไม่เอาผักเอาน้ำใส";
@@ -26,7 +26,7 @@ class MenuSeeder extends Seeder
 
         $menu = new Menu();
         $menu->price = 150.00;
-        $menu->menu_id = "menu_id";
+        $menu->menu_id = "false";
         $menu->name_ENG = "pad thai";
         $menu->name_TH = "ผัดไทย";
         $menu->comment = "ไม่เอาผักเอาน้ำใส";

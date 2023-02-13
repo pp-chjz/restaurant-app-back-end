@@ -15,7 +15,6 @@ class MenuFactory extends Factory
     {
         return [
             'price' =>  $this->faker->numberBetween(500,50000),
-            'menu_id' => $this->faker->numerify("menu-####"),
             'name_ENG' => $this->faker->firstNameMale(),
             'name_TH' => $this->faker->lastName(),
             'comment' => $this->faker->address(),

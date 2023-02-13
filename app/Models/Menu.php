@@ -12,6 +12,7 @@ class Menu extends Model
     // set default attr value
     protected $attributes = [
         'catagories' => 1,
+        'menu_id' => "false",
         'menu_status' => 1,
         'QTY' => 1,
         'sort_menu' => 1,
