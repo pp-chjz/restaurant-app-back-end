@@ -30,6 +30,7 @@ class MenuResource extends JsonResource
             'size' => $this->size,
             'comment' => $this->comment,
             'ingredient' => $ingredients,
+            'QTY' => $this->QTY,
         ];
     }
 }

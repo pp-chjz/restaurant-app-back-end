@@ -121,7 +121,20 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        $menu->name_ENG = $request->input('name_ENG');
+        $menu->name_TH = $request->input('name_TH');
+        $menu->menu_status = $request->input('menu_status');
+        $menu->price = $request->input('price');
+        $menu->QTY = $request->input('QTY');
+        $menu->size = $request->input('size');
+        $menu->catagories = $request->input('catagories');
+        $menu->save();
+
+        $ingredients = $request->input('ingredients');
+        $this->updateIngredient($menu, $ingredients);
+
+        return $menu;
+
     }
 
     /**
