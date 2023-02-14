@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('menu_id');
-            $table->enum('catagories',array('food','drink','main dish','dessert'));
+            $table->enum('catagories',array('food','drink','dessert'));
             $table->integer('sort_menu');
             $table->string('name_ENG');
             $table->string('name_TH');
