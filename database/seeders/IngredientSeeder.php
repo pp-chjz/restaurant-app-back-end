@@ -80,6 +80,6 @@ class IngredientSeeder extends Seeder
 
 
         // Ingredient::factory(20)->create();
-        Ingredient::factory()->hasMenus(3)->create();
+        // Ingredient::factory()->hasMenus(3)->create();
     }
 }
