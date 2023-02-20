@@ -13,7 +13,7 @@ class CreateMenuOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_oreder', function (Blueprint $table) {
+        Schema::create('menu_order', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Order::class);
             $table->foreignIdFor(\App\Models\Menu::class);
@@ -21,6 +21,10 @@ class CreateMenuOrderTable extends Migration
             $table->foreignIdFor(\App\Models\Tablenumber::class);
             $table->enum('status',array('complete','not complete'));
             $table->longText('comment');
+            $table->dateTime('order_time');
+            $table->dateTime('complete_at');
+
+
             
 
             $table->timestamps();
