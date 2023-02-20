@@ -12,6 +12,8 @@ class Order extends Model
     protected $attributes = [
         'cancel_status' => 1,
         'order_status' => 1,
+        'menu_id' => 0,
+        'tablenumber_id' => 0,
     ];
 
     public function Menus()

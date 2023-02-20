@@ -18,6 +18,7 @@ class Menu extends Model
         'sort_menu' => 1,
         'size' => 'l',
         'ingredient_id' => 0,
+        'order_id' => 0 ,
     ];
 
     // public function recipes()
