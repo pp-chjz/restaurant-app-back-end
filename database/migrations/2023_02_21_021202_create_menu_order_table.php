@@ -18,15 +18,14 @@ class CreateMenuOrderTable extends Migration
             $table->foreignIdFor(\App\Models\Order::class);
             $table->foreignIdFor(\App\Models\Menu::class);
 
-            $table->foreignIdFor(\App\Models\Tablenumber::class);
-            $table->enum('status',array('complete','not complete'));
-            $table->longText('comment');
-            $table->dateTime('order_time');
-            $table->dateTime('complete_at');
+            $table->integer('table')->nullable();;
+            $table->string('table_str')->nullable();;
+            $table->enum('status',array('not complete','complete'))->nullable();;
+            $table->enum('food_status',array('prepare','served'))->nullable();;
 
-
-            
-
+            $table->longText('comment')->nullable();;
+            $table->dateTime('order_time')->nullable();;
+            $table->dateTime('complete_at')->nullable();;
             $table->timestamps();
         });
     }
@@ -38,6 +37,6 @@ class CreateMenuOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_oreder');
+        Schema::dropIfExists('menu_order');
     }
 }
