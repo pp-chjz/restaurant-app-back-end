@@ -32,4 +32,8 @@ class Menu extends Model
     {
         return $this->belongsToMany(Ingredient::class);
     }
+    public function Orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }

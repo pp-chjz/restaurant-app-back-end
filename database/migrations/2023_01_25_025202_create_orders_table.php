@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_id');
 
             $table->foreignIdFor(\App\Models\Tablenumber::class);
+            $table->foreignIdFor(\App\Models\Menu::class);
         });
     }
 

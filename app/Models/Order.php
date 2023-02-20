@@ -13,4 +13,9 @@ class Order extends Model
         'cancel_status' => 1,
         'order_status' => 1,
     ];
+
+    public function Menus()
+    {
+        return $this->belongsToMany(Menu::class);
+    }
 }
