@@ -18,14 +18,14 @@ class CreateMenuOrderTable extends Migration
             $table->foreignIdFor(\App\Models\Order::class);
             $table->foreignIdFor(\App\Models\Menu::class);
 
-            $table->integer('table')->nullable();;
-            $table->string('table_str')->nullable();;
-            $table->enum('status',array('not complete','complete'))->nullable();;
-            $table->enum('food_status',array('prepare','served'))->nullable();;
+            $table->integer('QTY')->nullable();
+            $table->float('price')->nullable();
+            $table->enum('status',array('not complete','complete'))->nullable();
+            $table->enum('food_status',array('prepare','served'))->nullable();
 
-            $table->longText('comment')->nullable();;
-            $table->dateTime('order_time')->nullable();;
-            $table->dateTime('complete_at')->nullable();;
+            $table->longText('comment')->nullable();
+            $table->dateTime('order_time')->nullable();
+            $table->dateTime('complete_at')->nullable();
             $table->timestamps();
         });
     }

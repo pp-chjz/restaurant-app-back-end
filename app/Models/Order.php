@@ -14,6 +14,7 @@ class Order extends Model
         'order_status' => 1,
         'menu_id' => 0,
         'tablenumber_id' => 0,
+        'table_number' => 0,
     ];
 
     public function Menus()
