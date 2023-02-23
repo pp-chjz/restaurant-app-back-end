@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('menu',\App\Http\Controllers\Api\MenuController::class);
 Route::apiResource('ingredient',\App\Http\Controllers\Api\IngredientController::class);
+Route::apiResource('order',\App\Http\Controllers\Api\OrderController::class);
+
 
 Route::group([
 
