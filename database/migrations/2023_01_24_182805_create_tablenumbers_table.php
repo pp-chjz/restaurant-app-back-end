@@ -20,6 +20,9 @@ class CreateTablenumbersTable extends Migration
             $table->string('tablenumber');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreignIdFor(\App\Models\Order::class);
+
         });
     }
 

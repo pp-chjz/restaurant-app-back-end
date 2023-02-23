@@ -21,4 +21,8 @@ class Order extends Model
     {
         return $this->belongsToMany(Menu::class);
     }
+    public function TableNumbers()
+    {
+        return $this->belongsToMany(Tablenumber::class);
+    }
 }

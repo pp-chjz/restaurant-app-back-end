@@ -16,6 +16,7 @@ class Tablenumber extends Model
     protected $attributes = [
         'tablenum_status' => 3,
         'checkbill_status' => 2,
+        'order_id' => 0
     ];
 
     public function orders()
