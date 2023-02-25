@@ -18,7 +18,8 @@ class TableNumberController extends Controller
      */
     public function index()
     {
-        //
+        // $table = \App\Models\Tablenumber::Class;
+        // return new \App\Http\Resources\Tablenumber($table);
     }
 
     /**
@@ -47,7 +48,8 @@ class TableNumberController extends Controller
      */
     public function show(Tablenumber $tablenumber)
     {
-        //
+        return new \App\Http\Resources\Tablenumber($tablenumber);
+        
     }
 
     /**
@@ -59,7 +61,8 @@ class TableNumberController extends Controller
      */
     public function update(Request $request, Tablenumber $tablenumber)
     {
-        //
+        $order = $request->input('order_id');
+        $tablenumber->orders()->sync($order);
     }
 
     /**

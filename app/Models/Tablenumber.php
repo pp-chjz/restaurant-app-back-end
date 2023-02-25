@@ -19,9 +19,11 @@ class Tablenumber extends Model
         'order_id' => 0
     ];
 
+    public $primaryKey = 'tablenumber_id';
+
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->belongsToMany(Order::class);
     }
     public function bill()
     {
