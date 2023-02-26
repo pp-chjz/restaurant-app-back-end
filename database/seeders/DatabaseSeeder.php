@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PromotionSeeder::class);
         $this->call(PromotionDetailSeeder::class);
         $this->call(MenuSummarySeeder::class);
+        $this->call(FoodTableSeeder::class);
+
     }
 }

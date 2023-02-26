@@ -17,7 +17,7 @@ class OrderFactory extends Factory
             'total_price' =>  $this->faker->numberBetween(500,50000),
             'order_time' => $this->faker->dateTime(),
             'order_id' => $this->faker->numerify("order-####"),
-            'tablenumber_id' => $this->faker->numerify("####"),
+            // 'tablenumber_id' => $this->faker->numerify("####"),
         ];
     }
 }
