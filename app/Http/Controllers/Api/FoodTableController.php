@@ -18,7 +18,8 @@ class FoodTableController extends Controller
      */
     public function index()
     {
-        //
+        $foodTable = \App\Models\FoodTable::with('orders')->get();
+        return new \App\Http\Resources\FoodTableCollection($foodTable);
     }
 
     /**
@@ -62,6 +63,7 @@ class FoodTableController extends Controller
     {
         $order = $request->input('order_id');
         $foodTable->orders()->sync($order);
+        return new \App\Http\Resources\FoodTable($foodTable);
     }
 
     /**
