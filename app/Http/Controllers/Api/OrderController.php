@@ -19,7 +19,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = \App\Models\Order::with('menus')->get();
+        return new \App\Http\Resources\OrderCollection($order);
     }
 
     /**
@@ -94,7 +95,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return new \App\Http\Resources\Order($order);
+        // return new \App\Models\Order($order);
+
     }
 
     /**
