@@ -14,11 +14,11 @@ class Menu extends Model
         'catagories' => 1,
         'menu_id' => "false",
         'menu_status' => 1,
-        'QTY' => 1,
+        // 'QTY' => 1,
         'sort_menu' => 1,
         'size' => 'l',
-        'ingredient_id' => 0,
-        'order_id' => 0 ,
+        // 'ingredient_id' => 0,
+        // 'order_id' => 0 ,
     ];
 
     // public function recipes()
@@ -27,7 +27,8 @@ class Menu extends Model
     // }
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class)->withPivot('QTY', 'price' , 'status', 'food_status', 'comment', 'order_time', 'complete_at')
+        ->withTimestamps();
     }
     public function ingredients()
     {

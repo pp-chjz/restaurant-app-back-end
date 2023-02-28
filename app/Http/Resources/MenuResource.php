@@ -28,9 +28,9 @@ class MenuResource extends JsonResource
             'menu_status' => $this->menu_status,
             'price' => $this->price,
             'size' => $this->size,
-            'comment' => $this->comment,
+            // 'comment' => $this->comment,
             'ingredient' => $ingredients,
-            'QTY' => $this->QTY,
+            // 'QTY' => $this->QTY,
         ];
     }
 }

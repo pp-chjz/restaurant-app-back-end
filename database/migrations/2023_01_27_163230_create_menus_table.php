@@ -23,14 +23,14 @@ class CreateMenusTable extends Migration
             $table->string('name_TH');
             $table->enum('menu_status',array('in stock','out of stock'));
             $table->float('price');
-            $table->integer('QTY');
+            // $table->integer('QTY');
             $table->string('size');
-            $table->longText('comment');
+            // $table->longText('comment');
 
-            $table->foreignIdFor(\App\Models\Recipe::class);
-            $table->foreignIdFor(\App\Models\Promotion::class);
-            $table->foreignIdFor(\App\Models\Ingredient::class);
-            $table->foreignIdFor(\App\Models\Order::class);
+            // $table->foreignIdFor(\App\Models\Recipe::class);
+            // $table->foreignIdFor(\App\Models\Promotion::class);
+            // $table->foreignIdFor(\App\Models\Ingredient::class);
+            // $table->foreignIdFor(\App\Models\Order::class);
 
         });
     }
