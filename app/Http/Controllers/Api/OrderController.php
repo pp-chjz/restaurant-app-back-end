@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = \App\Models\Order::with('menus')->get();
+        $order = \App\Models\Order::orderBy('order_time', 'DESC')->with('menus')->get();
         return new \App\Http\Resources\OrderCollection($order);
     }
 
@@ -43,7 +43,7 @@ class OrderController extends Controller
         $order->order_status = $request->input('order_status');
         $order->total_price = $request->input('total_price');
         $order->order_time = $request->input('order_time');
-        $order->tablenumber_id = 0;
+        $order->table_number =  $request->input('table_number');
         $order->menu_id = 0;
         $order->order_id = 0;
         $order->save();
@@ -121,5 +121,20 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function getOrder()
+    {
+        // return $table = FoodTable::get();
+        $foodTable = \App\Models\FoodTable::where('have_order','>',0)->with('orders')->get();
+        // return $foodTable->orders;
+        // foreach ($this->$foodTable as $table) {
+        //     if ($table->orders) {
+        //         $table->order_id = 1;
+        //     }
+        // }
+        // return $foodTable;
+        return new \App\Http\Resources\FoodTableCollection($foodTable);
+
     }
 }

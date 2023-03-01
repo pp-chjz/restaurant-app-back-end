@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->timestamps();
             $table->enum('cancel_status',array('not cancel','cancel'));
-            $table->enum('order_status',array('prepare','cooking','complete'));
+            $table->enum('order_status',array('new','cooking','complete'));
             $table->float('total_price');
             $table->integer('table_number');
             $table->dateTime('order_time');
