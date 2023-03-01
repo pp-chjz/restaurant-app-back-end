@@ -13,6 +13,7 @@ class FoodTable extends Model
     protected $attributes = [
         'tablenum_status' => 3,
         'checkbill_status' => 2,
+        'have_order' => 0,
         'order_id' => 0
     ];
 

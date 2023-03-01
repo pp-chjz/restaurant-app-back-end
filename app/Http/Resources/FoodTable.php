@@ -21,6 +21,8 @@ class FoodTable extends JsonResource
             'id' => $this->id,
             'tablenum_status' => $this->tablenum_status,
             'tablenumber' => $this->tablenumber,
+            'have_order' => $this->have_order,
+
             'orders' => $this->orders,
         ];
     }

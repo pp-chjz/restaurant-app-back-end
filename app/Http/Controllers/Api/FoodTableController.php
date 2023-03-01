@@ -62,7 +62,10 @@ class FoodTableController extends Controller
     public function update(Request $request, FoodTable $foodTable)
     {
         $order = $request->input('order_id');
-        $foodTable->orders()->sync($order);
+        $foodTable->orders()->attach($order);
+        $foodTable->have_order = $foodTable->have_order + 1;
+        $foodTable->save();
+
         return new \App\Http\Resources\FoodTable($foodTable);
     }
 
@@ -75,5 +78,35 @@ class FoodTableController extends Controller
     public function destroy(FoodTable $foodTable)
     {
         //
+    }
+
+    public function getTableHaveOrder()
+    {
+        // return $table = FoodTable::get();
+        $foodTable = \App\Models\FoodTable::where('have_order','>',0)->with('orders')->get();
+        // return $foodTable->orders;
+        // foreach ($this->$foodTable as $table) {
+        //     if ($table->orders) {
+        //         $table->order_id = 1;
+        //     }
+        // }
+        // return $foodTable;
+        return new \App\Http\Resources\FoodTableCollection($foodTable);
+
+    }
+
+    public function getTotalTable()
+    {
+        // return $table = FoodTable::get();
+        $foodTable = \App\Models\FoodTable::get();
+        // return $foodTable->orders;
+        // foreach ($this->$foodTable as $table) {
+        //     if ($table->orders) {
+        //         $table->order_id = 1;
+        //     }
+        // }
+        // return $foodTable;
+        return $foodTable->count();
+
     }
 }

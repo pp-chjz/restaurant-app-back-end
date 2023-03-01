@@ -18,6 +18,7 @@ class CreateFoodTablesTable extends Migration
             $table->enum('tablenum_status',array('full','occupied','avaliable'));
             $table->enum('checkbill_status',array('calling','not calling'));
             $table->string('tablenumber');
+            $table->integer('have_order');
             $table->timestamps();
             $table->softDeletes();
 
