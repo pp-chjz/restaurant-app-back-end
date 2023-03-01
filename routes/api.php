@@ -23,6 +23,11 @@ Route::apiResource('ingredient',\App\Http\Controllers\Api\IngredientController::
 Route::apiResource('order',\App\Http\Controllers\Api\OrderController::class);
 Route::apiResource('table',\App\Http\Controllers\Api\TableNumberController::class);
 Route::apiResource('food-table',\App\Http\Controllers\Api\FoodTableController::class);
+Route::get('get-table-have-order',[\App\Http\Controllers\Api\FoodTableController::class, 'getTableHaveOrder'])
+    ->middleware('api')->name('foodTable.getTableHaveOrder');
+Route::get('get-total-table',[\App\Http\Controllers\Api\FoodTableController::class, 'getTotalTable'])
+    ->middleware('api')->name('foodTable.getTotalTable');
+
 
 
 
