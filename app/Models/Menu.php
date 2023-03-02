@@ -38,4 +38,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }
