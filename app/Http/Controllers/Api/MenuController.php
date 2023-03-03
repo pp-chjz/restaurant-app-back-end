@@ -44,9 +44,9 @@ class MenuController extends Controller
             'name_TH' => ['required'],
             'menu_status' => ['required'],
             'price' => ['required'],
-            'QTY' => ['required'],
+            // 'QTY' => ['required'],
             'size' => ['required'],
-            'comment' => ['required'],
+            // 'comment' => ['required'],
         ]);
 
         $menu = new Menu();
@@ -57,11 +57,11 @@ class MenuController extends Controller
         $menu->name_TH = $request->input('name_TH');
         $menu->menu_status = $request->input('menu_status');
         $menu->price = $request->input('price');
-        $menu->QTY = $request->input('QTY');
+        // $menu->QTY = $request->input('QTY');
         $menu->size = $request->input('size');
-        $menu->comment = $request->input('comment');
-        $menu->recipe_id = 0;
-        $menu->promotion_id = 0;
+        // $menu->comment = $request->input('comment');
+        // $menu->recipe_id = 0;
+        // $menu->promotion_id = 0;
         $menu->save();
 
         $ingredients = $request->input('ingredients');
@@ -125,7 +125,7 @@ class MenuController extends Controller
         $menu->name_TH = $request->input('name_TH');
         $menu->menu_status = $request->input('menu_status');
         $menu->price = $request->input('price');
-        $menu->QTY = $request->input('QTY');
+        // $menu->QTY = $request->input('QTY');
         $menu->size = $request->input('size');
         $menu->catagories = $request->input('catagories');
         $menu->save();
