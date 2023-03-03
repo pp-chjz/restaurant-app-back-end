@@ -137,4 +137,19 @@ class OrderController extends Controller
         return new \App\Http\Resources\FoodTableCollection($foodTable);
 
     }
+
+    public function getUnPaidOrder(Request $request)
+    {
+        $table = $request->input('table_number');
+        $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','!=',4)->where('pay_status','=',1)->with('menus')->get();
+        // return $foodTable->orders;
+        // foreach ($this->$foodTable as $table) {
+        //     if ($table->orders) {
+        //         $table->order_id = 1;
+        //     }
+        // }
+        // return $foodTable;
+        return new \App\Http\Resources\OrderCollection($order);
+
+    }
 }

@@ -28,6 +28,8 @@ Route::get('get-table-have-order',[\App\Http\Controllers\Api\FoodTableController
 Route::get('get-total-table',[\App\Http\Controllers\Api\FoodTableController::class, 'getTotalTable'])
     ->middleware('api')->name('foodTable.getTotalTable');
 Route::apiResource('image',\App\Http\Controllers\Api\ImageController::class);
+Route::post('get-order-unpaid',[\App\Http\Controllers\Api\OrderController::class, 'getUnPaidOrder'])
+    ->middleware('api')->name('order.getUnPaidOrder');
 
 
 
