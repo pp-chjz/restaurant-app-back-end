@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Menu;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -85,6 +87,43 @@ class OrderController extends Controller
         }
         
 
+    }
+
+    public function updateOrderStatus(Request $request, Order $order)
+    {
+        
+        $order->order_status = $request->input('order_status');
+        $order->save();
+
+        return response()->json(['message' => 'updated order status']);
+    }
+
+    public function updateMenuStatus(Request $request, Order $order)
+    {
+        
+        $menu_id = $request->input('menu_id');
+
+        $menu = Order::findOrFail($request->input('menu_id'));
+        $order->menus()->updateExistingPivot($menu->id, ['food_status' => $request->input('food_status')]);
+        $order->save();
+
+        return response()->json(['message' => 'updated food status']);
+        
+        // $order_by_id = Order::where('id' , '=' , $order_id)->with('menus')->get();
+
+        // return $order_by_id;
+        // $menu = $order_by_id->menus()->where('id','=',$id);    
+
+        // $order_by_id = \App\Models\Order::with('menus')->whereId($id)->get();
+
+        // return $order_by_id;
+
+
+        // $orders = Order::with('menus' => function($query) {
+        //     $query->where('id', 1);
+        // })->get();
+
+        // return $order;
     }
 
     /**

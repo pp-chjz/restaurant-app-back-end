@@ -30,6 +30,10 @@ Route::get('get-total-table',[\App\Http\Controllers\Api\FoodTableController::cla
 Route::apiResource('image',\App\Http\Controllers\Api\ImageController::class);
 Route::post('get-order-unpaid',[\App\Http\Controllers\Api\OrderController::class, 'getUnPaidOrder'])
     ->middleware('api')->name('order.getUnPaidOrder');
+Route::put('/orders/{order}/update-menu-status',[\App\Http\Controllers\Api\OrderController::class, 'updateMenuStatus'])
+    ->middleware('api')->name('order.updateMenuStatus');
+Route::put('/orders/{order}/update-order-status',[\App\Http\Controllers\Api\OrderController::class, 'updateOrderStatus'])
+    ->middleware('api')->name('order.updateOrderStatus');
 
 
 
