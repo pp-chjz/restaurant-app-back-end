@@ -180,7 +180,7 @@ class OrderController extends Controller
     public function getUnPaidOrder(Request $request)
     {
         $table = $request->input('table_number');
-        $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','!=',4)->where('pay_status','=',1)->with('menus')->get();
+        $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','!=',3)->where('order_status','!=',5)->where('pay_status','=',1)->with('menus')->get();
         // return $foodTable->orders;
         // foreach ($this->$foodTable as $table) {
         //     if ($table->orders) {
