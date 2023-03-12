@@ -21,7 +21,7 @@ class CreateMenuOrderTable extends Migration
             $table->integer('QTY')->nullable();
             $table->float('price')->nullable();
             $table->enum('status',array('not complete','complete'))->nullable();
-            $table->enum('food_status',array('prepare','cooking','served'))->nullable();
+            $table->enum('food_status',array('prepare','cooking','served','cancel'))->nullable();
 
             $table->longText('comment')->nullable();
             $table->dateTime('order_time')->nullable();

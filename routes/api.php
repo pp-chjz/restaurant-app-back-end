@@ -30,10 +30,16 @@ Route::get('get-total-table',[\App\Http\Controllers\Api\FoodTableController::cla
 Route::apiResource('image',\App\Http\Controllers\Api\ImageController::class);
 Route::post('get-order-unpaid',[\App\Http\Controllers\Api\OrderController::class, 'getUnPaidOrder'])
     ->middleware('api')->name('order.getUnPaidOrder');
+Route::post('get-order-unpaid-can-cancel',[\App\Http\Controllers\Api\OrderController::class, 'getUnPaidOrderThatCanCancel'])
+    ->middleware('api')->name('order.getUnPaidOrderThatCanCancel');
 Route::put('/orders/{order}/update-menu-status',[\App\Http\Controllers\Api\OrderController::class, 'updateMenuStatus'])
     ->middleware('api')->name('order.updateMenuStatus');
 Route::put('/orders/{order}/update-order-status',[\App\Http\Controllers\Api\OrderController::class, 'updateOrderStatus'])
     ->middleware('api')->name('order.updateOrderStatus');
+Route::post('/orders/get-order-by-search',[\App\Http\Controllers\Api\OrderController::class, 'getOrderBySearch'])
+    ->middleware('api')->name('order.getOrderBySearch');
+Route::get('/orders/get-order-by-date',[\App\Http\Controllers\Api\OrderController::class, 'getOrderByDate'])
+    ->middleware('api')->name('order.getOrderByDate');
 
 
 

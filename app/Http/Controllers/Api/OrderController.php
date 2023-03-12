@@ -103,7 +103,7 @@ class OrderController extends Controller
         
         $menu_id = $request->input('menu_id');
 
-        $menu = Order::findOrFail($request->input('menu_id'));
+        $menu = Menu::findOrFail($request->input('menu_id'));
         $order->menus()->updateExistingPivot($menu->id, ['food_status' => $request->input('food_status')]);
         $order->save();
 
@@ -189,6 +189,56 @@ class OrderController extends Controller
         // }
         // return $foodTable;
         return new \App\Http\Resources\OrderCollection($order);
+
+    }
+
+    public function getUnPaidOrderThatCanCancel(Request $request)
+    {
+        $table = $request->input('table_number');
+        $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','!=',3)->where('order_status','!=',4)->where('order_status','!=',5)->with('menus')->get();
+
+        
+        return new \App\Http\Resources\OrderCollection($order);
+
+    }
+
+    public function getWaitForPayOrder(Request $request)
+    {
+        $table = $request->input('table_number');
+        $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','=',3)->where('pay_status','=',1)->with('menus')->get();
+        return new \App\Http\Resources\OrderCollection($order);
+
+    }
+
+    public function getOrderByDate(Request $request)
+    {
+        // $date = $request->input('date');
+        $order = \App\Models\Order::where('order_time','like','%2023-04-05%')->with('menus')->get();
+        return new \App\Http\Resources\OrderCollection($order);
+
+    }
+
+    public function getOrderBySearch(Request $request)
+    {
+        $table = $request->input('table_number');
+        $order_status = $request->input('order_status');
+
+        if($table === 0)
+        {
+            $order = \App\Models\Order::where('order_status','=',$order_status)->where('pay_status','=',1)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+        }
+        elseif($order_status === 0)
+        {
+            $order = \App\Models\Order::where('table_number','=',$table)->where('pay_status','=',1)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+        }
+        else
+        {
+            $order = \App\Models\Order::where('table_number','=',$table)->where('order_status','=',$order_status)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+        }
+
 
     }
 }
