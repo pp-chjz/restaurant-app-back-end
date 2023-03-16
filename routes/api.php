@@ -40,7 +40,10 @@ Route::post('/orders/get-order-by-search',[\App\Http\Controllers\Api\OrderContro
     ->middleware('api')->name('order.getOrderBySearch');
 Route::get('/orders/get-order-by-date',[\App\Http\Controllers\Api\OrderController::class, 'getOrderByDate'])
     ->middleware('api')->name('order.getOrderByDate');
-
+Route::post('/menus/get-menu-by-search',[\App\Http\Controllers\Api\MenuController::class, 'getMenuBySearch'])
+    ->middleware('api')->name('menu.getMenuBySearch');
+Route::post('/ingredients/{ingredient}/update-ingredient-status',[\App\Http\Controllers\Api\IngredientController::class, 'updateStatus'])
+    ->middleware('api')->name('ingredient.updateStatus');
 
 
 
