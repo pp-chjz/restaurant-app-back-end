@@ -14,6 +14,8 @@ class Ingredient extends Model
         'ingredient_status' => 1,
         'QTY' => 50,
         'menu_id' => 0,
+        'ingredient_ID' => "false",
+
     ];
 
     public function menus()

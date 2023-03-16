@@ -74,6 +74,46 @@ class IngredientController extends Controller
     {
         //
     }
+    public function updateStatus(Request $request, Ingredient $ingredient)
+    {
+        $ingredient->ingredient_status = $request->input('ingredient_status');
+        $ingredient_name = $ingredient->ingredient_name_ENG;
+
+        $ingredient->save();
+
+
+        $menus = \App\Models\Menu::with('ingredients')->get();
+        foreach ($menus as $menu) {
+            // echo $menu->ingredients;
+            foreach ($menu->ingredients as $ingredient) {
+                // echo $ingredient->ingredient_name_ENG;
+                if($ingredient->ingredient_name_ENG === $ingredient_name)
+                {
+                    // echo $menu->name_ENG ;
+                    // echo "/" ;
+
+                    // echo $ingredient_name ;
+                    // echo "=" ;
+                    // echo $ingredient->ingredient_name_ENG ;
+                    // echo "   " ;
+                    if($ingredient->ingredient_status === 'out of stock')
+                    {
+                        $menu->menu_status = 'out of stock';
+                        $menu->save();
+                    }
+                    elseif($ingredient->ingredient_status === 'in stock')
+                    {
+                        $menu->menu_status = 'in stock';
+                        $menu->save();
+                    }
+                    
+                }
+            }
+        }
+        
+        return $menus;
+
+    }
 
     /**
      * Remove the specified resource from storage.
