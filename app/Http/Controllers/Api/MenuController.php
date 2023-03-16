@@ -195,4 +195,29 @@ class MenuController extends Controller
 
 
     }
+
+    public function getMenuByCustomerSearch(Request $request)
+    {
+        $menu_catagory = $request->input('menu_catagory');
+        $menu_name = $request->input('menu_name');
+
+
+        if( $menu_catagory !== 0 && $menu_name !== "")
+        {
+            $menu = \App\Models\Menu::where('name_ENG','like',$menu_name)->where('catagories','=',$menu_catagory)->with('ingredients')->get();
+            return new \App\Http\Resources\Menu($menu);
+        }
+        elseif( $menu_catagory !== 0)
+        {
+            $menu = \App\Models\Menu::where('catagories','=',$menu_catagory)->with('ingredients')->get();
+            return new \App\Http\Resources\Menu($menu);
+        }
+        elseif($menu_name !== "")
+        {
+            $menu = \App\Models\Menu::where('name_ENG','like',$menu_name)->with('ingredients')->get();
+            return new \App\Http\Resources\Menu($menu);
+        }
+
+
+    }
 }

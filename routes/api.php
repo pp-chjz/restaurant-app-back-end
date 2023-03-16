@@ -44,8 +44,10 @@ Route::post('/menus/get-menu-by-search',[\App\Http\Controllers\Api\MenuControlle
     ->middleware('api')->name('menu.getMenuBySearch');
 Route::post('/ingredients/{ingredient}/update-ingredient-status',[\App\Http\Controllers\Api\IngredientController::class, 'updateStatus'])
     ->middleware('api')->name('ingredient.updateStatus');
-
-
+Route::post('/ingredients/get-ingredient-by-search',[\App\Http\Controllers\Api\IngredientController::class, 'getIngredientBySearch'])
+    ->middleware('api')->name('ingredient.getIngredientBySearch');
+Route::post('/menus/get-menu-by-customer-search',[\App\Http\Controllers\Api\MenuController::class, 'getMenuByCustomerSearch'])
+    ->middleware('api')->name('menu.getMenuByCustomerSearch');
 
 
 Route::group([

@@ -127,4 +127,29 @@ class IngredientController extends Controller
 
         return response()->json(['message' => 'Ingredient Successfully deleted']);
     }
+
+    public function getIngredientBySearch(Request $request)
+    {
+        $ingredient_status = $request->input('ingredient_status');
+        $ingredient_name = $request->input('ingredient_name');
+
+
+        if($ingredient_status !== 0 && $ingredient_name !== "")
+        {
+            $ingredient = \App\Models\Ingredient::where('ingredient_name_ENG','like',$ingredient_name)->where('ingredient_status','=',$ingredient_status)->get();
+            return $ingredient;
+        }
+        elseif($ingredient_status !== 0)
+        {
+            $ingredient = \App\Models\ingredient::where('ingredient_status','=',$ingredient_status)->get();
+            return $ingredient;
+        }
+        elseif($ingredient_name !== "")
+        {
+            $ingredient = \App\Models\ingredient::where('ingredient_name_ENG','like',$ingredient_name)->get();
+            return $ingredient;
+        }
+
+
+    }
 }
