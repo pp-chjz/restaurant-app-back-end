@@ -25,6 +25,91 @@ class OrderController extends Controller
         return new \App\Http\Resources\OrderCollection($order);
     }
 
+    public function getOrderWaitForCheckBill()
+    {
+        $tables = array();
+        $orders_return = array(
+        );
+        $orders = \App\Models\Order::where('order_status', '=' , 'wait_for_check_bill')->with('menus')->get();
+        
+        // array_push($orders_return, array());
+        // array_push($orders_return, array(4,5,6));
+        // array_push($orders_return, array(4,5,6));
+        foreach ($orders as $order) {
+            array_push($tables, $order->table_number);
+        }
+
+        $tables = array_unique($tables);
+        foreach ($tables as $table) {
+            // echo "tables = ";
+            // echo $table;
+            // echo "       ";
+
+            array_push($orders_return, array($table));
+
+        }
+        // array_push($orders_return[0], "yes");
+
+
+
+        // foreach ($orders_return as $order) {
+
+        //     foreach ($orders as $order) {
+        //         if($order->table_number)
+        //         {
+
+        //         }
+        //     }
+
+        // }
+        $count = 0;
+        foreach ($orders_return as $order) {
+            // echo "--";
+
+            foreach ($order as $o) {
+                // echo $o;
+                foreach ($orders as $order_obj) {
+                    if($o === $order_obj->table_number)
+                    {
+                        // echo "if";
+                        array_push($orders_return[$count], $order_obj);
+                    }
+                }
+        
+            }
+            $count += 1;
+        }
+        $count = 0;
+        
+        // foreach ($orders_return as $order) {
+        //     $order = array_shift($orders_return[$count]);  
+        //     $count += 1;
+
+
+        // }
+
+        // foreach ($orders_return as $order) {
+        //     echo "[";
+
+        //     foreach ($order as $o) {
+        //         echo $o;
+        //         echo ",";
+
+
+        //         // foreach ($orders as $order_obj) {
+        //         //     if($o === $order_obj->table_number)
+        //         //     {
+        //         //         array_push($order, "have");
+        //         //     }
+        //         // }
+        
+        //     }
+        //     echo "]-----------";
+
+        // }
+        return $orders_return;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -87,6 +172,27 @@ class OrderController extends Controller
         }
         
 
+    }
+
+    public function updateOrderStatusPay(Request $request)
+    {
+
+        $orders = $request->input('orders');
+        
+        foreach ($orders as $order_id)
+        {
+            $order = \App\Models\Order::where('id','=',$order_id)->get();
+            echo $order;
+            $order->order_status = '5';
+            echo $order;
+
+            // $order->pay_status = 'paid';
+            // $order->save();
+
+            
+        }
+
+        return response()->json(['message' => 'updated order status']);
     }
 
     public function updateOrderStatus(Request $request, Order $order)
@@ -161,6 +267,7 @@ class OrderController extends Controller
     {
         //
     }
+
 
     public function getOrder()
     {

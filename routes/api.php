@@ -34,10 +34,14 @@ Route::post('get-order-unpaid-can-cancel',[\App\Http\Controllers\Api\OrderContro
     ->middleware('api')->name('order.getUnPaidOrderThatCanCancel');
 Route::put('/orders/{order}/update-menu-status',[\App\Http\Controllers\Api\OrderController::class, 'updateMenuStatus'])
     ->middleware('api')->name('order.updateMenuStatus');
+Route::get('/orders/wait-for-check-bill',[\App\Http\Controllers\Api\OrderController::class, 'getOrderWaitForCheckBill'])
+    ->middleware('api')->name('order.getOrderWaitForCheckBill');
 Route::put('/orders/{order}/update-order-status',[\App\Http\Controllers\Api\OrderController::class, 'updateOrderStatus'])
     ->middleware('api')->name('order.updateOrderStatus');
 Route::post('/orders/get-order-by-search',[\App\Http\Controllers\Api\OrderController::class, 'getOrderBySearch'])
     ->middleware('api')->name('order.getOrderBySearch');
+Route::post('/orders/update-order-status-pay',[\App\Http\Controllers\Api\OrderController::class, 'updateOrderStatusPay'])
+    ->middleware('api')->name('order.updateOrderStatusPay');
 Route::get('/orders/get-order-by-date',[\App\Http\Controllers\Api\OrderController::class, 'getOrderByDate'])
     ->middleware('api')->name('order.getOrderByDate');
 Route::post('/menus/get-menu-by-search',[\App\Http\Controllers\Api\MenuController::class, 'getMenuBySearch'])
