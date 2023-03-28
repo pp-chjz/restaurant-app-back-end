@@ -22,6 +22,10 @@ class CreateMenuOrderTable extends Migration
             $table->float('price')->nullable();
             $table->enum('status',array('not complete','complete'))->nullable();
             $table->enum('food_status',array('prepare','cooking','served','cancel'))->nullable();
+            $table->enum('catagories_dashboard',array('food','drink','dessert'))->nullable();
+            $table->string('name_ENG_dashboard')->nullable();
+            $table->string('name_TH_dashboard')->nullable();
+
 
             $table->longText('comment')->nullable();
             $table->dateTime('order_time')->nullable();

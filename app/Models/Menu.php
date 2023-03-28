@@ -27,7 +27,7 @@ class Menu extends Model
     // }
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class)->withPivot('QTY', 'price' , 'status', 'food_status', 'comment', 'order_time', 'complete_at')
+        return $this->hasMany(OrderDetail::class)->withPivot('QTY', 'price' , 'status', 'food_status', 'catagories_dashboard' , 'name_ENG_dashboard' , 'name_TH_dashboard' ,'comment', 'order_time', 'complete_at')
         ->withTimestamps();
     }
     public function ingredients()

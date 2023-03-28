@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Menu;
+use Carbon\Carbon;
+
 
 use Illuminate\Http\Request;
 
@@ -110,6 +112,62 @@ class OrderController extends Controller
         return $orders_return;
     }
 
+    public function getCountCatagories(Request $request)
+    {
+        $date = $request->input('date');
+        $searchType = $request->input('searchType');
+
+        if($searchType === 'day')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return $this->getAllCatagory($order);
+            // return new \App\Http\Resources\OrderCollection($order);
+        }
+        elseif($searchType === 'week')
+        {
+            Carbon::setWeekStartsAt(Carbon::SUNDAY);
+            Carbon::setWeekEndsAt(Carbon::SATURDAY);
+            $order = \App\Models\Order::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            return $this->getAllCatagory($order);
+            // return new \App\Http\Resources\OrderCollection($order);
+            
+        }
+        elseif($searchType === 'month')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return $this->getAllCatagory($order);
+            // return new \App\Http\Resources\OrderCollection($order);
+
+        }
+        elseif($searchType === 'year')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return $this->getAllCatagory($order);
+            // return new \App\Http\Resources\OrderCollection($order);
+            
+        }
+    }
+
+    public function getAllCatagory($orders)
+    {
+        $pivots_return = array();
+        foreach ($orders as $order) {
+            foreach ($order->menus as $menu) {
+                array_push($pivots_return,$menu->pivot);
+            }
+        }
+
+        // foreach ($pivots_return as $return) {
+        //     echo $return;
+        //     echo "\r\n";
+        //     echo "\r\n";
+
+        // }
+
+        return $pivots_return;
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -162,6 +220,10 @@ class OrderController extends Controller
             'status' => $menu['status'],
             'food_status' => $menu['food_status'],
             'order_time' => $menu['order_time'],
+            'catagories_dashboard' => $menu['catagories'],
+            'name_ENG_dashboard' => $menu['name_ENG'],
+            'name_TH_dashboard' => $menu['name_TH'],
+
             'complete_at' => $menu['complete_at']]);
 
 
@@ -194,6 +256,8 @@ class OrderController extends Controller
 
         return response()->json(['message' => 'updated order status']);
     }
+
+
 
     public function updateOrderStatus(Request $request, Order $order)
     {
@@ -322,6 +386,40 @@ class OrderController extends Controller
         // $date = $request->input('date');
         $order = \App\Models\Order::where('order_time','like','%2023-04-05%')->with('menus')->get();
         return new \App\Http\Resources\OrderCollection($order);
+
+    }
+
+    public function getTotalOrderByDate(Request $request)
+    {
+        $date = $request->input('date');
+        $searchType = $request->input('searchType');
+
+        if($searchType === 'day')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+        }
+        elseif($searchType === 'week')
+        {
+            Carbon::setWeekStartsAt(Carbon::SUNDAY);
+            Carbon::setWeekEndsAt(Carbon::SATURDAY);
+            $order = \App\Models\Order::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+            return new \App\Http\Resources\OrderCollection($order);
+            
+        }
+        elseif($searchType === 'month')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+
+        }
+        elseif($searchType === 'year')
+        {
+            $order = \App\Models\Order::where('created_at','like',$date)->with('menus')->get();
+            return new \App\Http\Resources\OrderCollection($order);
+            
+        }
+        
 
     }
 

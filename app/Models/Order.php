@@ -21,7 +21,7 @@ class Order extends Model
 
     public function Menus()
     {
-        return $this->belongsToMany(Menu::class)->withPivot('QTY', 'price' , 'status', 'food_status', 'comment', 'order_time', 'complete_at')
+        return $this->belongsToMany(Menu::class)->withPivot('QTY', 'price' , 'status','catagories_dashboard' , 'name_ENG_dashboard' , 'name_TH_dashboard', 'food_status', 'comment', 'order_time', 'complete_at')
         ->withTimestamps();
     }
     public function TableNumbers()

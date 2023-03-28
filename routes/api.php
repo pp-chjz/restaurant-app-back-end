@@ -44,6 +44,10 @@ Route::post('/orders/update-order-status-pay',[\App\Http\Controllers\Api\OrderCo
     ->middleware('api')->name('order.updateOrderStatusPay');
 Route::get('/orders/get-order-by-date',[\App\Http\Controllers\Api\OrderController::class, 'getOrderByDate'])
     ->middleware('api')->name('order.getOrderByDate');
+Route::post('/orders/get-total-order-by-date',[\App\Http\Controllers\Api\OrderController::class, 'getTotalOrderByDate'])
+    ->middleware('api')->name('order.getTotalOrderByDate');
+Route::post('/orders/get-total-catagories',[\App\Http\Controllers\Api\OrderController::class, 'getCountCatagories'])
+    ->middleware('api')->name('order.getCountCatagories');
 Route::post('/menus/get-menu-by-search',[\App\Http\Controllers\Api\MenuController::class, 'getMenuBySearch'])
     ->middleware('api')->name('menu.getMenuBySearch');
 Route::post('/ingredients/{ingredient}/update-ingredient-status',[\App\Http\Controllers\Api\IngredientController::class, 'updateStatus'])
