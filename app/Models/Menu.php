@@ -15,7 +15,7 @@ class Menu extends Model
         'menu_id' => "false",
         'menu_status' => 1,
         // 'QTY' => 1,
-        'sort_menu' => 1,
+        'sort_menu' => 0,
         'size' => 'l',
         // 'ingredient_id' => 0,
         // 'order_id' => 0 ,
